@@ -6,10 +6,10 @@ deploy:
       - ./infra/k8s/*
       - ./infra/k8s-dev/*
 build:
-  googleCloudBuild:
-    projectId: ticketing-dev-357200
+  local:
+    push: false
   artifacts:
-    - image: us.gcr.io/ticketing-dev-357200/auth
+    - image: blacktruffle/auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -17,7 +17,7 @@ build:
         manual:
           - src: "src/***/*.ts"
             dest: .
-    - image: us.gcr.io/ticketing-dev-357200/client
+    - image: blacktruffle/client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -25,7 +25,7 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
-    - image: us.gcr.io/ticketing-dev-357200/tickets
+    - image: blacktruffle/tickets
       context: tickets
       docker:
         dockerfile: Dockerfile
@@ -33,7 +33,7 @@ build:
         manual:
           - src: "src/***/*.ts"
             dest: .
-    - image: us.gcr.io/ticketing-dev-357200/orders
+    - image: blacktruffle/orders
       context: orders
       docker:
         dockerfile: Dockerfile
@@ -41,7 +41,7 @@ build:
         manual:
           - src: "src/***/*.ts"
             dest: .
-    - image: us.gcr.io/ticketing-dev-357200/expiration
+    - image: blacktruffle/expiration
       context: expiration
       docker:
         dockerfile: Dockerfile
@@ -50,7 +50,7 @@ build:
           - src: "src/***/*.ts"
             dest: .
 
-    - image: us.gcr.io/ticketing-dev-357200/payments
+    - image: blacktruffle/payments
       context: payments
       docker:
         dockerfile: Dockerfile
